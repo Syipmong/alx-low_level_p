@@ -1,41 +1,28 @@
 #include "main.h"
 
 /**
- * _sqrt_helper - a helper function that does the recursion work.
+ * sqrt1 - Makes possible to evaluate from 1 to n
+ * @a: same number as n
+ * @b: number that iterates from 1 to n
  *
- * @n: int input
- * @min: min guess int input
- * @max: max guess int input
- *
- * Return: he natural square root of @n
+ * Return: integer
  */
-int _sqrt_helper(int n, int min, int max)
+int sqrt1(int a, int b)
 {
-	int guess = (min + max) / 2;
-
-	if (guess * guess == n)
-		return (guess);
-	else if (max == min)
+	if (b * b == a)
+		return (b);
+	else if (b * b > a)
 		return (-1);
-	else if (guess * guess > n)
-		return (_sqrt_helper(n, min, guess - 1));
-	else
-		return (_sqrt_helper(n, guess + 1, max));
+	return (sqrt1(a, b + 1));
 }
 
 /**
- * _sqrt_recursion - returns the natural square root of a number.
+ * _sqrt_recursion - returns the natural square root of n
+ * @n: integer
  *
- * @n: int input
- *
- * Return: he natural square root of @n
+ * Return: square root of n.
  */
 int _sqrt_recursion(int n)
 {
-	if (n < 0)
-		return (-1);
-	else if (n == 0)
-		return (0);
-	else
-		return (_sqrt_helper(n, 0, n));
+	return (sqrt1(n, 1));
 }
